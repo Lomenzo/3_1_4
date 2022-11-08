@@ -31,14 +31,14 @@ public class UserServiceImpl implements UserService{
         User userUpdate = userDao.findById(userId).get();
         String emptyString = "";
         String newName = user.getName();
-        String newLastName = user.getLastName();
+        String newPassword = user.getPassword();
 
         if (!emptyString.equalsIgnoreCase(newName) && Objects.nonNull(newName)) {
             userUpdate.setName(newName);
         }
 
-        if (!emptyString.equalsIgnoreCase(newLastName) && Objects.nonNull(newLastName)) {
-            userUpdate.setLastName(newLastName);
+        if (!emptyString.equalsIgnoreCase(newPassword) && Objects.nonNull(newPassword)) {
+            userUpdate.setPassword(newPassword);
         }
 
         userUpdate.setSalary(user.getSalary());

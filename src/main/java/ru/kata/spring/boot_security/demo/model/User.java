@@ -6,13 +6,14 @@ import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Component
 @Entity
-@Table(name = "crud_users_table")
+@Table(name = "user")
 public class User {
 
     @Id
@@ -23,14 +24,25 @@ public class User {
     private String name;
 
     @Column
-    private String lastName;
+    private String password;
 
     @Column
     private int salary;
 
-    public User(String name, String lastName, int salary) {
+    public User(String name, String password, int salary) {
         this.name = name;
-        this.lastName = lastName;
+        this.password = password;
         this.salary = salary;
     }
+
+    @ManyToMany
+    private Set<Role> roles;
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
 }

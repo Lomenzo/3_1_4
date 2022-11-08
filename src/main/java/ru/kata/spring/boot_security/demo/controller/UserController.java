@@ -33,9 +33,9 @@ public class UserController {
     public String addUserPostMethod(Model model, @ModelAttribute("userFormer") User userForm, ModelMap modelMap) {
         model.addAttribute("userFormer", userForm);
         String name = userForm.getName();
-        String lastName = userForm.getLastName();
+        String password = userForm.getPassword();
         int salary = userForm.getSalary();
-        User newUser = new User(name,lastName,salary);
+        User newUser = new User(name,password,salary);
         userService.saveUser(newUser);
         List<User> userList = userService.getUserList();
         modelMap.addAttribute("users", userList);
