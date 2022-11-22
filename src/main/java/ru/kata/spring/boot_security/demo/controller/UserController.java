@@ -2,6 +2,7 @@ package ru.kata.spring.boot_security.demo.controller;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.servlet.ModelAndView;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,29 +25,15 @@ public class UserController {
     UserService userService;
 
 
-
-//    @Autowired
-//    Authentication authentication;
-//
-
-
-
-
-//    @GetMapping(value = "/user")
-//    public String showUserData(Model model) {
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        String currentPrincipalName = authentication.getName();
-
-
-//        String nameOfCurrentSessionUser = authentication.getName();
-//        List<User> userList = userService.getUserList();
-//        userList.get(2);
-//        model.addAttribute("users", userList);
-
-
-//
-//        return "user";
-//    }
+    @GetMapping(value = "/user")
+    public ModelAndView showUserData() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) authentication.getPrincipal();
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("user");
+        modelAndView.addObject("user", user);
+        return modelAndView;
+    }
 
     @GetMapping(value = "/admin/userApp")        //  http://localhost:8080/admin/userApp
     public String showUserForm(Model model, ModelMap modelMap) {

@@ -4,23 +4,19 @@
     <title>Private cabinet</title>
 </head>
 <body>
-<h1>User, welcome to your Private cabinet!</h1>
+<h1><span sec:authentication="name"></span>, welcome to your Private cabinet!</h1>
 <div sec:authorize="isAuthenticated()">
     This content is only shown to authenticated users.
 </div>
-<div sec:authorize="hasRole('ADMIN')">
-    This content is only shown to administrators.
+<div sec:authorize="hasAuthority('ADMIN')">
+    Also you a logged as administrator.
+    <a th:href="@{/admin/userApp}">go to Admin page</a>
 </div>
-<div sec:authorize="hasRole('USER')">
-    This content is only shown to users.
-</div>
-<span sec:authentication="name">Bob</span>
-<br>
-<br>
 <br>
 <br>
 <div sec:authorize="isAuthenticated()">
-    Authenticated as <span sec:authentication="name"></span></div>
+    Authenticated as <span sec:authentication="name"></span><br>
+    With Salary equal <a th:text="${user.salary}"></a></div>
 <br>
 <br>
 <br>
