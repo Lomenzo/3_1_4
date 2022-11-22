@@ -30,15 +30,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-//        Optional<User> user = userDao.findByUsername(s);
+        Optional<User> user = userDao.findByName(s);
         //List t = userDao.findAll();
         //User o = userDao.getOne((long)0);
         //Object user = t.get(0);
         //User u1 = user;
-        User user = userDao.findByName(s);
-        //if (user.isEmpty()) throw new UsernameNotFoundException("User with this name does not exist");
-        if (user == null) throw new UsernameNotFoundException("User with this name does not exist");
-            //if (o.getName() == null || o.getPassword() == null) throw new UsernameNotFoundException("User with this name does not exist");
+    //    User user = userDao.findByName(s);
+        if (user.isEmpty()) throw new UsernameNotFoundException("User with this name does not exist");
+    //    if (user == null) throw new UsernameNotFoundException("User with this name does not exist");
+        //    if (user.getName() == null || user.getPassword() == null) throw new UsernameNotFoundException("User with this name does not exist");
 
         //return new UserDetailsImpl(user.get());
         //return new UserDetailsImpl(o);
@@ -52,6 +52,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 //        return new org.springframework.security.core.userdetails.User(user.getName(), user.getPassword(), grantedAuthorities);
 
         System.out.println(user);
-        return user;
+        return user.get();
     }
 }
