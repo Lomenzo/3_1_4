@@ -6,13 +6,17 @@
 </head>
 <body>
 <h1>Enter the new info for this User</h1>
-<form action="#" th:action="@{/update/{id}(id=${id})}" th:object="${userFinded}" method="post">
+<form action="#" th:action="@{/admin/update/{id}(id=${id})}" th:object="${userFinded}" method="post">
   <p>Name: <input type="text" th:field="${userFinded.name}" /></p>
   <p>Password: <input type="text" th:field="${userFinded.password}" /></p>
   <p>Salary: <input type="text" th:field="${userFinded.salary}" /></p>
   <p><input type="submit" value="Affirm edit" /></p>
 </form>
 <br>
-<a th:href="@{/userApp}">Return</a>
+<a th:href="@{/admin/userApp}">Return</a>
+<br>
+<br>
+<br>
+<a th:href="@{/logout}">logout</a>
 </body>
 </html>

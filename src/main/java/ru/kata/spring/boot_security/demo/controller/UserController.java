@@ -1,5 +1,7 @@
 package ru.kata.spring.boot_security.demo.controller;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +23,32 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @GetMapping(value = "/userApp")        //  http://localhost:8080/userApp
+
+
+//    @Autowired
+//    Authentication authentication;
+//
+
+
+
+
+//    @GetMapping(value = "/user")
+//    public String showUserData(Model model) {
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        String currentPrincipalName = authentication.getName();
+
+
+//        String nameOfCurrentSessionUser = authentication.getName();
+//        List<User> userList = userService.getUserList();
+//        userList.get(2);
+//        model.addAttribute("users", userList);
+
+
+//
+//        return "user";
+//    }
+
+    @GetMapping(value = "/admin/userApp")        //  http://localhost:8080/admin/userApp
     public String showUserForm(Model model, ModelMap modelMap) {
         model.addAttribute("userFormer", new User());
         List<User> userList = userService.getUserList();
@@ -29,7 +56,7 @@ public class UserController {
         return "userPage";
     }
 
-    @PostMapping(value = "/userApp")
+    @PostMapping(value = "/admin/userApp")
     public String addUserPostMethod(Model model, @ModelAttribute("userFormer") User userForm, ModelMap modelMap) {
         model.addAttribute("userFormer", userForm);
         String name = userForm.getName();
@@ -42,20 +69,20 @@ public class UserController {
         return "userPage";
     }
 
-    @GetMapping("/edit/{id}")
+    @GetMapping("/admin/edit/{id}")
     public String showUpdateForm(@PathVariable("id") long id, Model model) {
         model.addAttribute("userFinded", new User());
         return "updateUserPage";
     }
 
-    @PostMapping("/update/{id}")
+    @PostMapping("/admin/update/{id}")
     public String updateUser(@PathVariable("id") long id, @ModelAttribute("userFinded") User userFinded, Model model) {
         model.addAttribute("userFinded", userFinded);
         userService.updateUser(userFinded, id);
         return "updateUserPage";
     }
 
-    @GetMapping("/delete/{id}")
+    @GetMapping("/admin/delete/{id}")
     public String deleteUser(@PathVariable("id") long id, Model model) {
         userService.deleteUserById(id);
         return "deletedUserPage";

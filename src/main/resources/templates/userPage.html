@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>CRUDapplication</title>
+    <title>Page of GOD</title>
 </head>
 <body>
 <h1>Add new User</h1>
-<form action="#" th:action="@{/userApp}" th:object="${userFormer}" method="post">
+<form action="#" th:action="@{/admin/userApp}" th:object="${userFormer}" method="post">
     <p>Name: <input type="text" th:field="*{name}" /></p>
     <p>Password: <input type="text" th:field="*{password}" /></p>
     <p>Salary: <input type="text" th:field="*{salary}" /></p>
@@ -25,9 +25,13 @@
         <td th:utext="${lst.name}">name</td>
         <td th:utext="${lst.password}">password</td>
         <td th:utext="${lst.salary}">salary</td>
-        <td><a th:href="@{/delete/{id}(id=${lst.id})}">Delete</a></td>
-        <td><a th:href="@{/edit/{id}(id=${lst.id})}">Edit</a></td>
+        <td><a th:href="@{/admin/delete/{id}(id=${lst.id})}">Delete</a></td>
+        <td><a th:href="@{/admin/edit/{id}(id=${lst.id})}">Edit</a></td>
     </tr>
 </table>
+<br>
+<br>
+<br>
+<a th:href="@{/logout}">logout</a>
 </body>
 </html>

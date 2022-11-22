@@ -1,11 +1,29 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <title>Spring Security Example</title>
+    <title>Private cabinet</title>
 </head>
 <body>
-<h1>User, welcome spring boot security page!</h1>
-
-
+<h1>User, welcome to your Private cabinet!</h1>
+<div sec:authorize="isAuthenticated()">
+    This content is only shown to authenticated users.
+</div>
+<div sec:authorize="hasRole('ADMIN')">
+    This content is only shown to administrators.
+</div>
+<div sec:authorize="hasRole('USER')">
+    This content is only shown to users.
+</div>
+<span sec:authentication="name">Bob</span>
+<br>
+<br>
+<br>
+<br>
+<div sec:authorize="isAuthenticated()">
+    Authenticated as <span sec:authentication="name"></span></div>
+<br>
+<br>
+<br>
+<a th:href="@{/logout}">logout</a>
 </body>
 </html>

@@ -5,7 +5,13 @@
 </head>
 <body>
 <h1>Welcome to Index PAGE!</h1>
-
-
+<br>
+<div sec:authorize="isAuthenticated()">
+    This content is only shown to authenticated users.
+</div>
+<br>
+<br>
+<br>
+<a th:href="@{/login}">login</a>
 </body>
 </html>
