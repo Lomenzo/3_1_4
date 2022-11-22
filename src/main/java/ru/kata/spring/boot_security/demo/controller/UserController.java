@@ -24,7 +24,6 @@ public class UserController {
     @Autowired
     UserService userService;
 
-
     @GetMapping(value = "/user")
     public ModelAndView showUserData() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -35,7 +34,7 @@ public class UserController {
         return modelAndView;
     }
 
-    @GetMapping(value = "/admin/userApp")        //  http://localhost:8080/admin/userApp
+    @GetMapping(value = "/admin/userApp")
     public String showUserForm(Model model, ModelMap modelMap) {
         model.addAttribute("userFormer", new User());
         List<User> userList = userService.getUserList();

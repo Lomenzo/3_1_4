@@ -13,8 +13,6 @@ public interface UserService {
     // Update operation
     User updateUser(User user, Long userId);
 
-//    User findByUsername(String username);
-
     void save(User user);
 
     // Delete operation
