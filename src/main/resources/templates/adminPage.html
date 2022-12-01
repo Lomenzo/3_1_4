@@ -91,18 +91,36 @@
                         <div class="">
 
                             <! табличный div блок>
-                            <main class="container-fluid border-box bg-white border-top" role="main">
-
-                                <div class="container-fluid pt-4 pb-3 pl-2">
-
+                            <div class="container-fluid border-box bg-white border-top">
+                                <div class="container pt-4 pb-3 pl-2">
+                                    <div class="row justify-content-center align-items-center">
                                     <form action="#" th:action="@{/admin/userApp}" th:object="${userFormer}" method="post">
-                                        <p>Name: <input type="text" th:field="*{name}" /></p>
-                                        <p>Password: <input type="text" th:field="*{password}" /></p>
-                                        <p>Salary: <input type="text" th:field="*{salary}" /></p>
-                                        <p><input type="submit" value="Create" /></p>
+                                        <div class="form-group mb-3">
+                                            <label for="formName" class="text-red text-center mx-auto"><strong>Name</strong></label>
+                                            <input type="text" class="form-control" id="formName" placeholder="Enter name" th:field="*{name}">
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label for="formPassword"><strong>Password</strong></label>
+                                            <input type="password" class="form-control" id="formPassword" placeholder="Password" th:field="*{password}">
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label for="formSalary"><strong>Salary</strong></label>
+                                            <input type="password" class="form-control" id="formSalary" placeholder="Enter salary" th:field="*{salary}">
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label for="formRole"><strong>Role</strong></label>
+                                            <select multiple class="form-control" id="formRole">
+                                                <option>ADMIN</option>
+                                                <option>USER</option>
+                                            </select>
+                                        </div>
+
+                                        <button type="submit" class="btn-lg btn-success rounded border-0 align-content-center">Add new user</button>
                                     </form>
+                                    </div>
+
                                 </div>
-                            </main>
+                            </div>
                         </div>
                     </div>
                 </div>
