@@ -28,69 +28,87 @@
 <div class="container-fluid p-0">
     <div class="row">
         <div class="col-2"> <!div боковой бар слева>
-
             <a class="btn-block btn-primary rounded border-0 p-2 mt-3 mb-0 text-left" th:href="@{/admin/userApp}" role="button">Admin</a>
             <a class="btn-block btn-link rounded border-0 p-2 mt-0 text-left" th:href="@{/user}" role="button">User</a>
-
-
         </div> <!div боковой бар слева>
 
 
         <div class="col-10 bg-light p-4">
             <h1>Admin panel</h1>
-            <div class="col-12 border rounded px-0 pt-0">
-                <div class="pl-4 py-2">
-                    <h5><b>All users</b></h5>
-                </div>
-                <div class="">
 
-                    <! табличный div блок>
-                    <main class="container-fluid border-box bg-white border-top" role="main">
+            <ul class="nav nav-tabs"> <!-вкладки>
+                <li class="nav-item"><!-ухо-первой-вкладки>
+                    <a class="nav-link active" data-toggle="tab" href="#usersTable">Users table</a>
+                </li>
+                <li class="nav-item"><!-ухо-второй-вкладки>
+                    <a class="nav-link" data-toggle="tab" href="#newUser">New user</a>
+                </li>
+            </ul>
 
-                        <div class="container-fluid pt-4 pb-3 pl-2">
-
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Salary</th>
-                        <th scope="col">Role</th>
-                        <th scope="col">Edit</th>
-                        <th scope="col">Delete</th>
-                    </tr>
-                </thead>
-                    <tr th:each="lst : ${users}">
-                        <td th:utext="${lst.id}"></td>
-                        <td th:utext="${lst.name}"></td>
-                        <td th:utext="${lst.salary}"></td>
-                        <td th:utext="${lst.password}"></td>
-                        <td><a class="btn btn-info rounded border-0" th:href="@{/admin/edit/{id}(id=${lst.id})}" role="button">Edit</a></td>
-                        <td><a class="btn btn-danger rounded border-0" th:href="@{/admin/delete/{id}(id=${lst.id})}" role="button">Delete</a></td>
-                    </tr>
-                </table>
+            <div class="tab-content"> <!-содержимое вкладок>
+                <div class="tab-pane fade show active" id="usersTable"> <!-содержимое вкладки 1>
+                    <div class="col-12 border rounded px-0 pt-0">
+                        <div class="pl-4 py-2">
+                            <h5><b>All users</b></h5>
                         </div>
-                    </main>
+                        <div class="">
+
+                            <! табличный div блок>
+                            <main class="container-fluid border-box bg-white border-top" role="main">
+
+                                <div class="container-fluid pt-4 pb-3 pl-2">
+
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Salary</th>
+                                            <th scope="col">Role</th>
+                                            <th scope="col">Edit</th>
+                                            <th scope="col">Delete</th>
+                                        </tr>
+                                        </thead>
+                                        <tr th:each="lst : ${users}">
+                                            <td th:utext="${lst.id}"></td>
+                                            <td th:utext="${lst.name}"></td>
+                                            <td th:utext="${lst.salary}"></td>
+                                            <td th:utext="${lst.password}"></td>
+                                            <td><a class="btn btn-info rounded border-0" th:href="@{/admin/edit/{id}(id=${lst.id})}" role="button">Edit</a></td>
+                                            <td><a class="btn btn-danger rounded border-0" th:href="@{/admin/delete/{id}(id=${lst.id})}" role="button">Delete</a></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </main>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="newUser"> <!-содержимое вкладки 2>
+                    <div class="col-12 border rounded px-0 pt-0">
+                        <div class="pl-4 py-2">
+                            <h5><b>Add new User</b></h5>
+                        </div>
+                        <div class="">
+
+                            <! табличный div блок>
+                            <main class="container-fluid border-box bg-white border-top" role="main">
+
+                                <div class="container-fluid pt-4 pb-3 pl-2">
+
+                                    <form action="#" th:action="@{/admin/userApp}" th:object="${userFormer}" method="post">
+                                        <p>Name: <input type="text" th:field="*{name}" /></p>
+                                        <p>Password: <input type="text" th:field="*{password}" /></p>
+                                        <p>Salary: <input type="text" th:field="*{salary}" /></p>
+                                        <p><input type="submit" value="Create" /></p>
+                                    </form>
+                                </div>
+                            </main>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
     </div> <!row>
-
-
-
-<br>
-    <h1>Add new User</h1>
-    <form action="#" th:action="@{/admin/userApp}" th:object="${userFormer}" method="post">
-        <p>Name: <input type="text" th:field="*{name}" /></p>
-        <p>Password: <input type="text" th:field="*{password}" /></p>
-        <p>Salary: <input type="text" th:field="*{salary}" /></p>
-        <p><input type="submit" value="Create" /></p>
-    </form>
-
-    <br>
-    <a th:href="@{/user}">go to User page</a>
-    <br>
 </div> <!container>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
