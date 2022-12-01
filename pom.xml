@@ -18,6 +18,8 @@
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<bootstrap.version>4.0.0-2</bootstrap.version>
+		<webjars-locator.version>0.30</webjars-locator.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -45,6 +47,16 @@
 			<groupId>com.mysql</groupId>
 			<artifactId>mysql-connector-j</artifactId>
 			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>${bootstrap.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>webjars-locator</artifactId>
+			<version>${webjars-locator.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>

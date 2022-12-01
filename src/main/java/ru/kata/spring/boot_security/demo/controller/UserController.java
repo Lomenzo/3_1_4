@@ -39,7 +39,7 @@ public class UserController {
         model.addAttribute("userFormer", new User());
         List<User> userList = userService.getUserList();
         modelMap.addAttribute("users", userList);
-        return "userPage";
+        return "adminPage";
     }
 
     @PostMapping(value = "/admin/userApp")
@@ -52,7 +52,7 @@ public class UserController {
         userService.saveUser(newUser);
         List<User> userList = userService.getUserList();
         modelMap.addAttribute("users", userList);
-        return "userPage";
+        return "adminPage";
     }
 
     @GetMapping("/admin/edit/{id}")
