@@ -37,10 +37,10 @@
 
 
         <div class="col-10 bg-light p-4">
-            <h1>User information-page</h1>
-            <div class="col-12 border rounded px-0 pb-0">
+            <h1>Admin panel</h1>
+            <div class="col-12 border rounded px-0 pt-0">
                 <div class="pl-4 py-2">
-                    <h5><b>About user</b></h5>
+                    <h5><b>All users</b></h5>
                 </div>
                 <div class="">
 
@@ -52,19 +52,21 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <td>ID</td>
-                        <td>name</td>
-                        <td>password</td>
-                        <td>salary</td>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Salary</th>
+                        <th scope="col">Role</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
                     </tr>
                 </thead>
                     <tr th:each="lst : ${users}">
-                        <td th:utext="${lst.id}">ID</td>
-                        <td th:utext="${lst.name}">name</td>
-                        <td th:utext="${lst.password}">password</td>
-                        <td th:utext="${lst.salary}">salary</td>
-                        <td><a th:href="@{/admin/delete/{id}(id=${lst.id})}">Delete</a></td>
-                        <td><a th:href="@{/admin/edit/{id}(id=${lst.id})}">Edit</a></td>
+                        <td th:utext="${lst.id}"></td>
+                        <td th:utext="${lst.name}"></td>
+                        <td th:utext="${lst.salary}"></td>
+                        <td th:utext="${lst.password}"></td>
+                        <td><a class="btn btn-info rounded border-0" th:href="@{/admin/edit/{id}(id=${lst.id})}" role="button">Edit</a></td>
+                        <td><a class="btn btn-danger rounded border-0" th:href="@{/admin/delete/{id}(id=${lst.id})}" role="button">Delete</a></td>
                     </tr>
                 </table>
                         </div>
