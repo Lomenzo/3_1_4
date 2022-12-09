@@ -2,7 +2,9 @@ package ru.kata.spring.boot_security.demo.controller;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +12,8 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -35,16 +34,26 @@ public class UserController {
     }
 
     @GetMapping(value = "/admin/userApp")
-    public String showUserForm(Model model, ModelMap modelMap) {
+    public String showUserForm(Model model, ModelMap modelMap, Model modelRole) {
         model.addAttribute("userFormer", new User());
         List<User> userList = userService.getUserList();
         modelMap.addAttribute("users", userList);
+        modelRole.addAttribute("roleFormer", new Role());
         return "adminPage";
     }
 
     @PostMapping(value = "/admin/userApp")
-    public String addUserPostMethod(Model model, @ModelAttribute("userFormer") User userForm, ModelMap modelMap) {
+    public String addUserPostMethod(Model model, @ModelAttribute("userFormer") User userForm, Model modelRole, ModelMap modelMap) {
         model.addAttribute("userFormer", userForm);
+        //modelRole.addAttribute("roleFormer", roleForm);
+
+
+//        List<String> options = new ArrayList<String>();
+//        options.add("option 1");
+//        options.add("option 2");
+//        modelRole.addAttribute("options", options);
+//        System.out.println(modelRole.toString().concat(" - roleForm give THAT"));
+
         String name = userForm.getName();
         String password = userForm.getPassword();
         int salary = userForm.getSalary();
@@ -73,4 +82,11 @@ public class UserController {
         userService.deleteUserById(id);
         return "deletedUserPage";
     }
+
+    @DeleteMapping("/{id}")
+    public String findById(@PathVariable long id) {
+        userService.deleteUserById(id);
+        return "redirect:/user";
+    }
+
 }

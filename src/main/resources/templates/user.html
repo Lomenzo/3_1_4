@@ -30,9 +30,6 @@
         <div class="col-2"> <!div боковой бар слева>
             <a class="btn-block btn-primary rounded border-0 p-2 mt-3 mb-0 text-left" th:href="@{/user}" role="button">User</a>
             <a class="btn-block btn-link rounded border-0 p-2 mt-0 text-left"  th:href="@{/admin/userApp} " role="button" sec:authorize="hasAuthority('ADMIN')">Admin</a>
-
-
-
         </div> <!div боковой бар слева>
 
 
@@ -62,7 +59,16 @@
                                     <td><a th:text="${user.id}"></a></td>
                                     <td><a th:text="${user.name}"></a></td>
                                     <td><a th:text="${user.salary}"></a></td>
-                                    <td><a th:text="${user.name}"></a></td>
+                                    <td>
+                                        <div class="row">
+                                                <div class = "mr-1" sec:authorize="hasAuthority('ADMIN')">
+                                                    ADMIN
+                                                </div>
+                                                <div sec:authorize="hasAuthority('USER')">
+                                                    USER
+                                                </div>
+                                        </div>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>

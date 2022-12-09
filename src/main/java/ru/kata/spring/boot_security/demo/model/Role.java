@@ -39,6 +39,10 @@ public class Role implements GrantedAuthority {
         this.name = name;
     }
 
+    public Role(String name) {
+        this.name = name;
+    }
+
     @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
     private Set<User> users;
 
@@ -52,5 +56,10 @@ public class Role implements GrantedAuthority {
     @Override
     public String getAuthority() {
         return this.name;
+    }
+
+    @Override
+    public String toString() {
+        return name.toString();
     }
 }

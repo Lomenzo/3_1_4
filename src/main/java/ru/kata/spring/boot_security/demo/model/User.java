@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Set;
 
@@ -112,5 +113,21 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    @Override
+    public String toString() {
+//        String rlss = "";
+//        for (Role i:roles) {
+//            i.getName();
+//            rlss = rlss.concat((rlss.equals(""))?"":" ").concat(i.toString());
+//        }
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", salary=" + salary +
+                ", roles=" + roles.toString() +
+                '}';
     }
 }
