@@ -32,8 +32,9 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User updateUser(User user, Long userId){
-        User userUpdate = userDao.findById(userId).get();
+    public User updateUser(User user/*, Long userId*/){
+                                    //User userUpdate = userDao.findById(userId).get();
+        User userUpdate = userDao.findByName(user.getName()).get();
         String emptyString = "";
         String newName = user.getName();
         String newPassword = user.getPassword();
@@ -52,11 +53,20 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void save(User user) {
-        user.setPassword(user.getPassword());
-        user.setRoles(new HashSet<>((Collection) roleRepo.findAll()));
-        userDao.save(user);
+    public void editUser (User user){
+        //if (userDao.findByName(user.getName()).get() == null) {
+            //user.setPassword(user.getPassword());                                       //убрать, нет кодировки пароля
+            userDao.save(user);
+        //}
     }
+
+
+//    @Override
+//    public void save(User user) {
+//        user.setPassword(user.getPassword());
+//        user.setRoles(new HashSet<>((Collection) roleRepo.findAll()));
+//        userDao.save(user);
+//    }
 
     @Override
     public Optional<User> findById(Long userId) {

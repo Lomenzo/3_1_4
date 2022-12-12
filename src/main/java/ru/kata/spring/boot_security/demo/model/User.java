@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -31,10 +32,11 @@ public class User implements UserDetails {
     @Column
     private int salary;
 
-    public User(String name, String password, int salary) {
+    public User(String name, String password, int salary, Set<Role> roles) {
         this.name = name;
         this.password = password;
         this.salary = salary;
+        this.roles = roles;
     }
 
     public Long getId() {
@@ -70,7 +72,7 @@ public class User implements UserDetails {
         this.salary = salary;
     }
 
-    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @ManyToMany(/*cascade = CascadeType.PERSIST, */fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "users_id"),
             inverseJoinColumns = @JoinColumn(name = "roles_id")
@@ -80,10 +82,17 @@ public class User implements UserDetails {
     public Set<Role> getRoles() {
         return roles;
     }
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
 
+    //скорее всего не нужно
+    public void setRoles(String roles) {
+        this.roles = new HashSet<>();
+        if (roles.contains("ADMIN")) {
+            this.roles.add(new Role("ADMIN"));
+        }
+        if (roles.contains("USER")) {
+            this.roles.add(new Role("USER"));
+        }
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
