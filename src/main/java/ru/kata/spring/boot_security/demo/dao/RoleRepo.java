@@ -1,6 +1,5 @@
 package ru.kata.spring.boot_security.demo.dao;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 import ru.kata.spring.boot_security.demo.model.Role;
 import org.springframework.stereotype.Repository;

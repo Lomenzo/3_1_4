@@ -12,13 +12,7 @@ public interface UserService {
     List<User> getUserList();
 
     // Update operation
-    User updateUser(User user/*, Long userId*/);
-
-    void editUser(User user);
-
-//    void save(User user);
-
-    Optional<User> findById(Long userId);
+    void updateUser(User user);
 
     // Delete operation
     void deleteUserById(Long userId);

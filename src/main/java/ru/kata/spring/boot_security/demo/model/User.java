@@ -7,7 +7,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -83,7 +82,6 @@ public class User implements UserDetails {
         return roles;
     }
 
-    //скорее всего не нужно
     public void setRoles(String roles) {
         this.roles = new HashSet<>();
         if (roles.contains("ADMIN")) {
@@ -126,11 +124,6 @@ public class User implements UserDetails {
 
     @Override
     public String toString() {
-//        String rlss = "";
-//        for (Role i:roles) {
-//            i.getName();
-//            rlss = rlss.concat((rlss.equals(""))?"":" ").concat(i.toString());
-//        }
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
