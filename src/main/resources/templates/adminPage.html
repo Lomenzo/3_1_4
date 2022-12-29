@@ -133,7 +133,7 @@
                                                                                 class="form-control form-control-sm"
                                                                                 multiple size="2" required>
                                                                             <option th:each="role : ${roleNames}"
-                                                                                    th:value="${role}"
+                                                                                    th:value="${role.id}"
                                                                                     th:text="${role.name}"
                                                                                     th:selected="${user.roles.contains(role)}">
                                                                             </option>
@@ -270,7 +270,7 @@
                                                 <label for="formRoles">Role</label>
                                                 <select class="form-control" id="formRoles" multiple size="2" name="roles" required>
                                                     <option th:each="role : ${roleNames}"
-                                                            th:value="${role}"
+                                                            th:value="${role.id}"
                                                             th:text="${role.name}"></option>
                                                 </select>
                                             </div>

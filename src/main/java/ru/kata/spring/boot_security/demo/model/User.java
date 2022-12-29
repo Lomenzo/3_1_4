@@ -3,13 +3,12 @@ package ru.kata.spring.boot_security.demo.model;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -82,19 +81,40 @@ public class User implements UserDetails {
         return roles;
     }
 
-    public void setRoles(String roles) {
-        this.roles = new HashSet<>();
-        if (roles.contains("ADMIN")) {
-            this.roles.add(new Role("ADMIN"));
-        }
-        if (roles.contains("USER")) {
-            this.roles.add(new Role("USER"));
-        }
+    //Hardcode roles Admin+User
+//    public void setRoles(String roles) {
+//
+//        this.roles = new HashSet<>();
+//        if (roles.contains("ADMIN")) {
+//            this.roles.add(new Role("ADMIN"));
+//        }
+//        if (roles.contains("USER")) {
+//            this.roles.add(new Role("USER"));
+//        }
+//    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
+
+//    @Override
+//    public Collection<? extends GrantedAuthority> getAuthorities() {
+//        return this.roles;
+//    }
+
+//    public void setRoles(Set<Role> roles) {
+//        this.roles = roles;
+//    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return this.roles;
+        Set<Role> roles = getRoles();
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+
+        for (Role everyRole : roles) {
+            authorities.add(new SimpleGrantedAuthority(everyRole.getName()));
+        }
+        return authorities;
     }
 
     @Override
