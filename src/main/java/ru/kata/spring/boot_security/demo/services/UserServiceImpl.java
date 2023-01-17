@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void updateUser (User user){
-            userDao.save(user);
+        userDao.save(user);
     }
 
     @Override
@@ -54,5 +54,15 @@ public class UserServiceImpl implements UserService{
         User user2 = new User("vzv", "qwe", 77, roles2);
         saveUser(user1);
         saveUser(user2);
+    }
+
+    @Override
+    public User getById(long id) {
+        User user = null;
+        Optional<User> optional = userDao.findById(id);
+        if(optional.isPresent()) {
+            user = optional.get();
+        }
+        return user;
     }
 }
