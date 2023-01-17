@@ -44,7 +44,7 @@ fetch('http://localhost:8080/api/user/1')
 
 async function getAllUsersList() {
 
-    const response = await fetch("http://localhost:8080/api/user");
+    const response = await fetch("api/user");
 
     if (response.ok) {
         let json = await response.json()

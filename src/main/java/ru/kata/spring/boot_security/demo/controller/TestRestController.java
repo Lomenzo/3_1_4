@@ -35,7 +35,8 @@ public class TestRestController {
     @PostMapping
     public User create(@RequestBody User user) {
         System.out.println("LOG: Rest createUser Controller already called");
-        return userService.saveUser(user);
+        userService.saveUser(user);
+        return user;
     }
 
     @PutMapping("/{id}")

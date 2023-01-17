@@ -3,7 +3,28 @@
 <head>
     <title>Admin panel</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+
+    <script>
+        function show(shown, hidden) {
+            document.getElementById(shown).style.display = 'block';
+            document.getElementById(hidden).style.display = 'none';
+            return false;
+        }
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js">
+    </script>
+
+
 </head>
+
+
+
+
+
 <body>
 
 <header class="navbar navbar-expand-lg navbar-dark text-white bg-dark">
@@ -98,28 +119,29 @@
                                 <div class="container pt-4 pb-3 pl-2">
                                     <div class="row justify-content-center align-items-center">
 
-                                        <form class="form-signin mx-auto font-weight-bold text-center p-3" th:action="@{/create}" th:object="${userFormer}" method="post">
-                                            <div class="form-group mb-3">
-                                                <label for="formName" class="text-red text-center mx-auto"><strong>Name</strong></label>
-                                                <input type="text" class="form-control" id="formName" placeholder="Enter name" name="name" required>
+                                        <form id="addForm">
+                                            <div class="row mb-3">
+                                                <label for="addName" class="form-label text-center"><b>Name</b></label>
+                                                <input type="text" class="form-control" id="addName" placeholder="Enter name" name="name" required>
                                             </div>
-                                            <div class="form-group mb-3">
-                                                <label for="formPassword"><strong>Password</strong></label>
-                                                <input type="password" class="form-control" id="formPassword" name="password" required>
+                                            <div class="row mb-3">
+                                                <label for="addPassword" class="form-label text-center"><b>Password</b></label>
+                                                <input type="password" class="form-control" id="addPassword" name="password" required>
                                             </div>
-                                            <div class="form-group mb-3">
-                                                <label for="formSalary"><strong>Salary</strong></label>
-                                                <input type="number" class="form-control" id="formSalary" placeholder="Enter salary" name="salary" required>
+                                            <div class="row mb-3">
+                                                <label for="addSalary" class="form-label text-center"><b>Salary</b></label>
+                                                <input type="number" class="form-control" id="addSalary" placeholder="Enter salary" name="salary" required>
                                             </div>
-                                            <div class="form-group mb-3">
-                                                <label for="formRoles">Role</label>
-                                                <select class="form-control" id="formRoles" multiple size="2" name="roles" required>
-                                                    <option th:each="role : ${roleNames}"
-                                                            th:value="${role.id}"
-                                                            th:text="${role.name}"></option>
+                                            <div class="row mb-3">
+                                                <label for="rolesId" class="form-label text-center"><b>Role</b></label>
+                                                <select name="rolesId" class="form-select" size="2" multiple aria-label="rolesId" id="rolesId" required>
+                                                    <option value="1 USER">USER</option>
+                                                    <option value="2 ADMIN">ADMIN</option>
                                                 </select>
                                             </div>
-                                            <button type="submit" class="btn-lg btn-success rounded border-0 align-content-center">Add new user</button>
+                                            <div class="col-6 mx-auto">
+                                                <button type="submit" class="btn btn-success">Add new user</button>
+                                            </div>
                                         </form>
 
                                     </div>
@@ -381,7 +403,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-
+<script type="text/javascript" th:src="@{addForm.js}"></script>
 <script type="text/javascript" th:src="@{testMethod.js}"></script>
 
 <script>
@@ -432,6 +454,10 @@
        })
    */
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
 
 </body>
 </html>
