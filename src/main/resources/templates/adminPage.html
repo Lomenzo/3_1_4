@@ -399,12 +399,120 @@
 
 
 
+<!Modal window for Edit>
+<div class="modal fade" id="ModalEdit" tabindex="-1" aria-labelledby="ModalEdit" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit user</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <form class="modal-form" id="formEdit">
+                <div class="form-group col-6 container-sm bg-white justify-content-center">
+                    <div class="modal-body">
+                        <div class="form-group row mb-3">
+                            <label for="userId" class="form-label text-center"><b>ID</b></label>
+                            <input type="number" class="form-control" name="id" id="userId" readonly>
+                        </div>
+                        <div class="form-group row mb-3">
+                            <label for="userName" class="form-label text-center"><b>First
+                                name</b></label>
+                            <input type="text" class="form-control" name="name" id="userName" required>
+                        </div>
+
+                        <div class="form-group row mb-3">
+                            <label for="userSalary" class="form-label text-center"><b>Salary</b></label>
+                            <input type="number" class="form-control" name="salary" id="userSalary" min="0" required>
+                        </div>
+
+                        <div class="form-group row mb-3">
+                            <label for="userPassword" class="form-label text-center"><b>Password</b></label>
+                            <input type="password" class="form-control" name="password" id="userPassword" required>
+                        </div>
+                        <div class="form-group row mb-3">
+                            <label class="form-label text-center"><b>Role</b></label>
+                            <select class="form-select" size="2" name="rolesId" multiple aria-label="rolesId" required>
+                                <option value="1 USER">USER</option>
+                                <option value="2 ADMIN">ADMIN</option>
+                            </select>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="modal-footer ">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Edit</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<!Modal window for Delete>
+<div class="modal fade" id="ModalDelete" tabindex="-1" aria-labelledby="ModalDelete" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal-title">Delete user</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <form class="modal-form" id="formDelete">
+                <div class="form-group col-6 container-sm bg-white justify-content-center">
+                    <div class="modal-body">
+                        <div class="form-group row mb-3">
+                            <label for="userIdDelete" class="form-label text-center"><b>ID</b></label>
+                            <input type="number" class="form-control" name="id" id="userIdDelete" readonly >
+                        </div>
+                        <div class="form-group row mb-3">
+                            <label for="userNameDelete" class="form-label text-center"><b>Name</b></label>
+                            <input type="text" class="form-control" name="userName" id="userNameDelete" disabled>
+                        </div>
+
+                        <div class="form-group row mb-3">
+                            <label for="userSalaryDelete" class="form-label text-center"><b>Salary</b></label>
+                            <input type="number" class="form-control" name="userSalary" id="userSalaryDelete" disabled>
+                        </div>
+
+                        <div class="form-group row mb-3">
+                            <label class="form-label text-center"><b>Role</b></label>
+                            <select class="form-select" size="2" name="rolesId" multiple aria-label="role" disabled>
+                                <option value="1 USER">USER</option>
+                                <option value="2 ADMIN">ADMIN</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" id="deleteButton" class="btn btn-danger">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 <script type="text/javascript" th:src="@{addForm.js}"></script>
 <script type="text/javascript" th:src="@{testMethod.js}"></script>
+<script type="text/javascript" th:src="@{DeleteModal.js}"></script>
+<script type="text/javascript" th:src="@{DeleteUser.js}"></script>
+<script type="text/javascript" th:src="@{EditModal.js}"></script>
+<script type="text/javascript" th:src="@{EditUser.js}"></script>
 
 <script>
 

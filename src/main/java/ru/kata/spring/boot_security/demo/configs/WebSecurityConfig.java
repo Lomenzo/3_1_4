@@ -20,7 +20,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
+                .csrf().disable()               //настройки секьюрности для корректной работы ПОСТ-контроллеров
                 .authorizeRequests()
                 //.antMatchers("/", "/index").permitAll()
                 .antMatchers("/").anonymous()
