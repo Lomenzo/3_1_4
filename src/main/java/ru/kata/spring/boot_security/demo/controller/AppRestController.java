@@ -7,16 +7,15 @@ import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.services.UserService;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/user")    //    http://localhost:8080/api/user/1
-public class TestRestController {
+@RequestMapping("/api/user")
+public class AppRestController {
 
     private final UserService userService;
 
     @Autowired
-    public TestRestController (UserService userService){
+    public AppRestController(UserService userService){
         this.userService = userService;
     }
 
@@ -42,7 +41,7 @@ public class TestRestController {
     @PutMapping("/{id}")
     public User update(@RequestBody User user) {
         System.out.println("LOG: Rest updateUser Controller already called");
-        userService.updateUser(user);          //возможно в сигнатуре должен передаваться ID для апдейта, понадобится метод Dao update(id, user)
+        userService.updateUser(user);
         return user;
     }
 

@@ -6,8 +6,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import java.util.Set;
-
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -40,27 +38,24 @@ public class Role implements GrantedAuthority {
     }
 
     public Role(String name) {
-        //Hardcode roles Admin+User
-//        if (name.contains("ADMIN")) {
-//            this.id = 2L;
-//        } else if (name.contains("USER")) {
-//            this.id = (long)1;
-//        }
-
         this.name = name;
     }
-
-//    @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
-//    private Set<User> users;
-
 
     @Override
     public String getAuthority() {
         return this.name;
     }
 
+//    @Override
+//    public String toString() {
+//        return name.split("_")[0] + "\n";
+//    }
+
     @Override
     public String toString() {
-        return name.split("_")[0] + "\n";
+        return "Role{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

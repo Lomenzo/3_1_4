@@ -81,30 +81,9 @@ public class User implements UserDetails {
         return roles;
     }
 
-    //Hardcode roles Admin+User
-//    public void setRoles(String roles) {
-//
-//        this.roles = new HashSet<>();
-//        if (roles.contains("ADMIN")) {
-//            this.roles.add(new Role("ADMIN"));
-//        }
-//        if (roles.contains("USER")) {
-//            this.roles.add(new Role("USER"));
-//        }
-//    }
-
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
-
-//    @Override
-//    public Collection<? extends GrantedAuthority> getAuthorities() {
-//        return this.roles;
-//    }
-
-//    public void setRoles(Set<Role> roles) {
-//        this.roles = roles;
-//    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

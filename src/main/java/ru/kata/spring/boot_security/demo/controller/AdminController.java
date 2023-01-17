@@ -31,22 +31,4 @@ public class AdminController {
         model.addAttribute("roleNames", roleService.getAllRoles());
         return "adminPage";
     }
-
-    @PostMapping(value = "/create")
-    public String addUserPostMethod(@ModelAttribute("userFormer") User userForm) {
-        userService.saveUser(userForm);
-        return "redirect:/admin";
-    }
-
-    @PostMapping("/update")
-    public String updateUser(@ModelAttribute User editUser) {
-        userService.updateUser(editUser);
-        return "redirect:/admin";
-    }
-
-    @PostMapping("/delete/{id}")
-    public String deleteUser(@PathVariable("id") long id) {
-        userService.deleteUserById(id);
-        return "redirect:/admin";
-    }
 }
